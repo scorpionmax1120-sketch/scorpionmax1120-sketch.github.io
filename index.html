@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黃種州 (Chung-Chou Huang) | 室內設計與 AI 空間規劃</title>
+  <meta name="description" content="黃種州個人網站 - 國立台中科技大學室內設計系碩士班。專注於智慧空間設計、AI應用規劃與空間美學。">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-primary: #3b82f6;
+      --accent-secondary: #8b5cf6;
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --nav-bg: rgba(11, 15, 25, 0.85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-badge {
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .gradient-text {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Section Shared */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* About Section */
+    .about-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .about-info p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #60a5fa;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 14px;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: #f1f5f9;
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .skill-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #60a5fa;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-list li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-list li::before {
+      content: "•";
+      color: #8b5cf6;
+      font-weight: bold;
+    }
+
+    /* Contact Section */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-box h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">
+          <span class="brand-badge"></span>
+          <span>黃種州 Chung-Chou</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">關於我</a></li>
+          <li><a href="#projects">專案研究</a></li>
+          <li><a href="#skills">專業技能</a></li>
+          <li><a href="#contact">聯絡方式</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="status-pill">
+        <span>✨ 國立台中科技大學 室內設計系碩士班</span>
+      </div>
+      <h1>
+        探索空間美學與<br>
+        <span class="gradient-text">生成式 AI 前瞻應用</span>
+      </h1>
+      <p>
+        你好！我是黃種州。專注於將人工智慧（Generative AI）、智慧自動化工作流與傳統室內空間規劃相結合，打造兼具生活溫度與前瞻科技的空間體驗。
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">瀏覽研究專案</a>
+        <a href="#contact" class="btn btn-outline">與我聯繫</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="about-card">
+        <div class="about-info">
+          <div class="project-tag">About Me</div>
+          <h3>學術研究與設計理念</h3>
+          <p>
+            現就讀於國立台中科技大學 日間部碩士班 室內設計系，並積極投入「AI 應用規劃」與空間演算領域。致力於研究如何運用大語言模型、視覺生成模型與自動化管線，縮短從概念發想到空間落地的週期，為室內設計帶來全新的可能。
+          </p>
+          <div class="project-meta">
+            <span class="pill">📍 台中, 台灣</span>
+            <span class="pill">🏛️ NTCUST Interior Design</span>
+            <span class="pill">🤖 AI Workflow</span>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number">01</div>
+            <div class="stat-label">碩士一年級上學期</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">AI 空間輔助專案</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">創新與探索熱忱</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">前瞻研究啟動</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2>精選專案與研究主題</h2>
+        <p>結合數位工具、幾何演算與生成式 AI 輔助規劃</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div>
+            <div class="project-tag">AI & Architecture</div>
+            <h3>AI 輔助空間佈局與動線規劃</h3>
+            <p>
+              探討運用 AI 演算法分析居住者行為動線，並透過參數化條件快速生成最適格局配置，提升前期規劃效率與空間使用率。
+            </p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">AI 規劃</span>
+            <span class="pill">動線模擬</span>
+            <span class="pill">概念生成</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div>
+            <div class="project-tag">Lighting & Materials</div>
+            <h3>虛擬光影與材質情感感知</h3>
+            <p>
+              透過數位彩現與神經渲染技術，模擬不同時段自然光影與建材肌理對居住者情緒的互動關係，建構沉浸式感官氛圍。
+            </p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">光影模擬</span>
+            <span class="pill">材質肌理</span>
+            <span class="pill">情感設計</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div>
+            <div class="project-tag">Smart Home</div>
+            <h3>智慧生活住宅原型概念設計</h3>
+            <p>
+              以使用者為中心的智慧住宅設計，整合物聯網感測情境與永續綠建材思維，打造靈活自適應的現代都會生活場域。
+            </p>
+          </div>
+          <div class="project-meta">
+            <span class="pill">智慧住宅</span>
+            <span class="pill">IoT 整合</span>
+            <span class="pill">永續空間</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2>專業能力與核心工具</h2>
+        <p>跨領域的設計思維與現代化數位技能組合</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>📐 空間設計與規劃</h4>
+          <ul class="skill-list">
+            <li>室內格局佈置與動線規劃</li>
+            <li>人體工學與使用行為研究</li>
+            <li>施工圖說與細部節點設計</li>
+            <li>色彩學與軟裝陳設搭配</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>💻 3D 數位建模與彩現</h4>
+          <ul class="skill-list">
+            <li>AutoCAD 專業平面圖繪製</li>
+            <li>SketchUp 空間立體建模</li>
+            <li>Enscape / Lumion 即時彩現</li>
+            <li>Rhino 幾何曲面輔助</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>🤖 AI 應用規劃與工具</h4>
+          <ul class="skill-list">
+            <li>Prompt Engineering 提示詞工程</li>
+            <li>Midjourney / Stable Diffusion 生成</li>
+            <li>MCP (Model Context Protocol) 整合</li>
+            <li>Antigravity 自動化協同工作流</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <h2>歡迎交流與合作</h2>
+        <p>無論是有關室內設計、AI應用研究，或跨領域專案合作，都歡迎隨時與我聯繫！</p>
+        <div class="hero-actions">
+          <a href="https://github.com/scorpionmax1120-sketch" target="_blank" class="btn btn-primary">
+            訪問 GitHub 個人檔案
+          </a>
+          <a href="mailto:contact@example.com" class="btn btn-outline">
+            發送電子郵件
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 黃種州 (Chung-Chou Huang) · 國立台中科技大學 室內設計系碩士班</p>
+      <p style="margin-top: 6px; font-size: 0.8rem; color: #475569;">
+        Deployed with GitHub Pages & Powered by Antigravity
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
