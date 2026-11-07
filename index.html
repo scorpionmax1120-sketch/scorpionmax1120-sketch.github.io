@@ -394,6 +394,366 @@
       font-size: 0.85rem;
     }
 
+    /* ========================================================
+       AI Chatbot Floating Widget Styles
+       ======================================================== */
+    .chatbot-launcher {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.45);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: launcherFloat 4s ease-in-out infinite;
+    }
+
+    .chatbot-launcher:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.65);
+    }
+
+    @keyframes launcherFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .chatbot-launcher svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .launcher-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      background: #10b981;
+      border: 2px solid #0b0f19;
+      border-radius: 50%;
+    }
+
+    .launcher-tooltip {
+      position: absolute;
+      right: 74px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--card-border);
+      color: #e2e8f0;
+      font-size: 0.82rem;
+      padding: 7px 14px;
+      border-radius: 10px;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      opacity: 0.95;
+    }
+
+    /* Chat Window Container */
+    .chat-window {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 550px;
+      max-height: calc(100vh - 120px);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+      transform: scale(0.9) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .chat-window.active {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Chat Header */
+    .chat-header {
+      padding: 14px 18px;
+      background: rgba(30, 41, 59, 0.7);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-header-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .chat-avatar-wrap svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border: 2px solid #0f172a;
+      border-radius: 50%;
+    }
+
+    .chat-title h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chat-title p {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .chat-close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.25rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .chat-close-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    /* Chat Messages Body */
+    .chat-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chat-body::-webkit-scrollbar {
+      width: 5px;
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    /* Bubbles */
+    .chat-msg {
+      display: flex;
+      gap: 10px;
+      max-width: 86%;
+      animation: msgPop 0.2s ease-out;
+    }
+
+    @keyframes msgPop {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-msg.bot {
+      align-self: flex-start;
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .chat-msg-avatar {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-msg-avatar svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .chat-bubble {
+      padding: 11px 15px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      border-radius: 16px;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .chat-msg.bot .chat-bubble {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #f1f5f9;
+      border-top-left-radius: 4px;
+    }
+
+    .chat-msg.user .chat-bubble {
+      background: linear-gradient(135deg, #2563eb, #6366f1);
+      color: #ffffff;
+      border-top-right-radius: 4px;
+    }
+
+    /* Quick Chips */
+    .quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip-btn {
+      font-size: 0.78rem;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #93c5fd;
+      padding: 5px 11px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip-btn:hover {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: #60a5fa;
+      color: #fff;
+    }
+
+    /* Typing Dots Animation */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 14px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: #94a3b8;
+      border-radius: 50%;
+      animation: dotPulse 1.4s infinite ease-in-out;
+    }
+
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotPulse {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* Chat Footer & Input */
+    .chat-footer {
+      padding: 12px 14px;
+      background: rgba(30, 41, 59, 0.6);
+      border-top: 1px solid var(--card-border);
+    }
+
+    .chat-input-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 6px 10px;
+    }
+
+    .chat-input-form:focus-within {
+      border-color: #3b82f6;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .chat-input::placeholder {
+      color: #64748b;
+    }
+
+    .chat-send-btn {
+      background: #3b82f6;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .chat-send-btn:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .chat-send-btn:disabled {
+      background: #475569;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     /* Mobile Responsive */
     @media (max-width: 768px) {
       .nav-links {
@@ -404,6 +764,19 @@
       }
       .contact-box {
         padding: 30px 20px;
+      }
+      .chat-window {
+        right: 12px;
+        bottom: 84px;
+        width: calc(100vw - 24px);
+        height: 480px;
+      }
+      .chatbot-launcher {
+        right: 16px;
+        bottom: 16px;
+      }
+      .launcher-tooltip {
+        display: none;
       }
     }
   </style>
@@ -615,6 +988,277 @@
       </p>
     </div>
   </footer>
+
+  <!-- ========================================================
+       SVG Symbol: 程式繪製的高科技小機器人大頭貼
+       ======================================================== -->
+  <svg style="display: none;">
+    <symbol id="icon-robot" viewBox="0 0 100 100">
+      <!-- Antenna 天線 -->
+      <line x1="50" y1="8" x2="50" y2="22" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="50" cy="8" r="5" fill="#38bdf8"/>
+      <!-- Ears 耳罩耳機 -->
+      <rect x="14" y="38" width="8" height="24" rx="4" fill="#3b82f6"/>
+      <rect x="78" y="38" width="8" height="24" rx="4" fill="#3b82f6"/>
+      <!-- Robot Head 機器人頭部外框 -->
+      <rect x="20" y="22" width="60" height="54" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+      <!-- Face Screen 面部螢幕 -->
+      <rect x="27" y="30" width="46" height="36" rx="10" fill="#090d16" stroke="#334155" stroke-width="1.5"/>
+      <!-- Glowing Eyes 閃爍大眼睛 -->
+      <ellipse cx="40" cy="46" rx="5" ry="6" fill="#38bdf8"/>
+      <ellipse cx="60" cy="46" rx="5" ry="6" fill="#38bdf8"/>
+      <circle cx="42" cy="44" r="1.8" fill="#ffffff"/>
+      <circle cx="62" cy="44" r="1.8" fill="#ffffff"/>
+      <!-- Smile 微笑弧線 -->
+      <path d="M42 56 Q50 62 58 56" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Blush 腮紅 -->
+      <circle cx="33" cy="53" r="2.5" fill="#ec4899" opacity="0.6"/>
+      <circle cx="67" cy="53" r="2.5" fill="#ec4899" opacity="0.6"/>
+      <!-- Neck & Base 頸部基座 -->
+      <rect x="42" y="76" width="16" height="8" rx="2" fill="#2563eb"/>
+      <path d="M26 84 C26 84 38 88 50 88 C62 88 74 84 74 84 L78 94 C78 94 64 98 50 98 C36 98 22 94 22 94 Z" fill="#3b82f6"/>
+    </symbol>
+  </svg>
+
+  <!-- ========================================================
+       右下角 AI 客服助理小機器人 HTML 結構
+       ======================================================== -->
+  <!-- 浮動啟動按鈕 -->
+  <div class="chatbot-launcher" id="chatLauncher" title="與種州的 AI 助理小機器人對話">
+    <div class="launcher-tooltip">💬 點我問問種州的事！</div>
+    <span class="launcher-badge"></span>
+    <svg><use href="#icon-robot"/></svg>
+  </div>
+
+  <!-- 對話視窗 -->
+  <div class="chat-window" id="chatWindow">
+    <!-- 頂部標題列 -->
+    <div class="chat-header">
+      <div class="chat-header-profile">
+        <div class="chat-avatar-wrap">
+          <svg><use href="#icon-robot"/></svg>
+          <span class="online-dot"></span>
+        </div>
+        <div class="chat-title">
+          <h4>種州的 AI 助理 🤖</h4>
+          <p>OpenRouter 驅動 · 智能答覆</p>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="chatCloseBtn" aria-label="關閉聊天視窗">✕</button>
+    </div>
+
+    <!-- 訊息區域 -->
+    <div class="chat-body" id="chatBody">
+      <!-- 初始機器人歡迎詞 -->
+      <div class="chat-msg bot">
+        <div class="chat-msg-avatar">
+          <svg><use href="#icon-robot"/></svg>
+        </div>
+        <div class="chat-bubble">
+          👋 你好！我是黃種州的專屬 AI 助理小機器人！<br>
+          有任何關於種州的學歷背景、室內設計專業、AI 應用研究或合作想法，都可以問我喔！
+          <div class="quick-chips">
+            <button class="chip-btn" data-query="請問種州的研究方向與專長是什麼？">💡 研究專長？</button>
+            <button class="chip-btn" data-query="種州擅長哪些 3D 建模與設計軟體？">📐 擅長軟體？</button>
+            <button class="chip-btn" data-query="如何與種州取得聯繫？">📫 如何聯繫？</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部輸入區 -->
+    <div class="chat-footer">
+      <form class="chat-input-form" id="chatForm">
+        <input 
+          type="text" 
+          id="chatInput" 
+          class="chat-input" 
+          placeholder="詢問關於種州的事項..." 
+          autocomplete="off"
+        />
+        <button type="submit" class="chat-send-btn" id="chatSendBtn" aria-label="發送訊息">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       前端對話控制與 Google Apps Script 串接腳本
+       ======================================================== -->
+  <script>
+    // =========================================================================
+    // ⚠️ 請在此填入您的 Google Apps Script 網頁應用程式網址 (Web App URL)
+    // 部署 GAS 後會獲得類似：https://script.google.com/macros/s/AKfycb.../exec
+    // =========================================================================
+    const GAS_WEB_APP_URL = "YOUR_GAS_WEB_APP_URL_HERE"; 
+
+    // DOM 元素選取
+    const chatLauncher = document.getElementById('chatLauncher');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatCloseBtn = document.getElementById('chatCloseBtn');
+    const chatBody = document.getElementById('chatBody');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+
+    // 對話歷史紀錄 (保存給 OpenRouter 作為上下文)
+    let chatHistory = [];
+
+    // 開啟/關閉對話視窗
+    chatLauncher.addEventListener('click', () => {
+      chatWindow.classList.toggle('active');
+      if (chatWindow.classList.contains('active')) {
+        chatInput.focus();
+      }
+    });
+
+    chatCloseBtn.addEventListener('click', () => {
+      chatWindow.classList.remove('active');
+    });
+
+    // 快捷問題點擊事件
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.classList.contains('chip-btn')) {
+        const query = e.target.getAttribute('data-query');
+        if (query) {
+          sendMessage(query);
+        }
+      }
+    });
+
+    // 表單提交事件
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      chatInput.value = '';
+      sendMessage(text);
+    });
+
+    // 發送訊息核心邏輯
+    async function sendMessage(text) {
+      // 1. 渲染使用者訊息氣泡
+      appendMessage('user', text);
+
+      // 2. 顯示小機器人「輸入中 / 思考中」動畫
+      const typingEl = appendTypingIndicator();
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      // 3. 檢查 GAS URL 是否尚未填寫
+      if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL === "YOUR_GAS_WEB_APP_URL_HERE") {
+        removeTypingIndicator(typingEl);
+        appendMessage('bot', `⚠️ **設定提示**：\n目前後端 Google Apps Script 網址尚未設定！\n請先依照部署教學將 GAS Web App URL 填入 \`index.html\` 中的 \`GAS_WEB_APP_URL\` 變數，小機器人就能正式連線回覆囉！`);
+        return;
+      }
+
+      // 4. 呼叫 Google Apps Script 後端
+      try {
+        chatSendBtn.disabled = true;
+
+        // 使用 text/plain 避免觸發瀏覽器 CORS OPTIONS 預檢問題（GAS 不支援 OPTIONS 預檢請求）
+        const response = await fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify({
+            message: text,
+            history: chatHistory
+          })
+        });
+
+        const data = await response.json();
+        removeTypingIndicator(typingEl);
+
+        if (data.reply) {
+          appendMessage('bot', data.reply);
+          // 將當前輪對話紀錄存入歷史
+          chatHistory.push({ role: 'user', content: text });
+          chatHistory.push({ role: 'assistant', content: data.reply });
+        } else if (data.error) {
+          appendMessage('bot', `❌ 錯誤：${data.error}`);
+        } else {
+          appendMessage('bot', '抱歉，暫時無法取得回覆，請稍後再試。');
+        }
+
+      } catch (err) {
+        removeTypingIndicator(typingEl);
+        appendMessage('bot', `❌ 連線發生錯誤：${err.message}\n請確認 GAS Web App 是否已設定為「任何人 (Anyone)」皆可存取。`);
+      } finally {
+        chatSendBtn.disabled = false;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    }
+
+    // 新增訊息到對話框
+    function appendMessage(sender, content) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-msg ${sender}`;
+
+      if (sender === 'bot') {
+        msgDiv.innerHTML = `
+          <div class="chat-msg-avatar">
+            <svg><use href="#icon-robot"/></svg>
+          </div>
+          <div class="chat-bubble">${formatText(content)}</div>
+        `;
+      } else {
+        msgDiv.innerHTML = `
+          <div class="chat-bubble">${escapeHtml(content)}</div>
+        `;
+      }
+
+      chatBody.appendChild(msgDiv);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // 顯示「輸入中」指示器
+    function appendTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'chat-msg bot typing-wrapper';
+      typingDiv.innerHTML = `
+        <div class="chat-msg-avatar">
+          <svg><use href="#icon-robot"/></svg>
+        </div>
+        <div class="chat-bubble typing-indicator">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      `;
+      chatBody.appendChild(typingDiv);
+      return typingDiv;
+    }
+
+    // 移除「輸入中」指示器
+    function removeTypingIndicator(el) {
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    }
+
+    // 轉義 HTML 防止 XSS
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // 簡易格式化 (支援換行與粗體)
+    function formatText(text) {
+      const safe = escapeHtml(text);
+      return safe
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+    }
+  </script>
 
 </body>
 </html>
