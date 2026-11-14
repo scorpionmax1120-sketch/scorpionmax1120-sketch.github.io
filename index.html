@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>黃種州 (Chung-Chou Huang) | 室內設計與 AI 空間規劃</title>
-  <meta name="description" content="黃種州個人網站 - 國立台中科技大學室內設計系碩士班。專注於智慧空間設計、AI應用規劃與空間美學。">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>黃種州 Chung-Chou Huang | 室內設計 × AI 應用規劃</title>
+  <meta name="description" content="黃種州個人網站｜國立台中科技大學室內設計系碩士班，專注於空間設計美學、生成式 AI 工作流與智慧生活空間研究。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --card-bg: rgba(22, 30, 49, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-primary: #3b82f6;
-      --accent-secondary: #8b5cf6;
-      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --nav-bg: rgba(11, 15, 25, 0.85);
+      --bg-base: #0b0f16;
+      --bg-elevated: #121824;
+      --bg-card: rgba(20, 27, 40, 0.78);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-warm: rgba(212, 163, 115, 0.3);
+      --text-primary: #f5f7fa;
+      --text-secondary: #9aa5b8;
+      --text-muted: #64748b;
+      --accent-warm: #d4a373;
+      --accent-warm-light: #ecc8a2;
+      --accent-ai: #38bdf8;
+      --accent-ai-deep: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -28,546 +36,873 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.7;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 85% 65%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at 12% 18%, rgba(212, 163, 115, 0.12) 0%, transparent 42%),
+        radial-gradient(circle at 86% 72%, rgba(56, 189, 248, 0.11) 0%, transparent 44%);
+      background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
       background-attachment: fixed;
     }
 
-    /* Container */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .container {
-      max-width: 1140px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Navbar */
+    /* ================= Header / Navbar ================= */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 90;
+      background: rgba(11, 15, 22, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    nav {
+    .nav-inner {
+      height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      height: 70px;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     .brand {
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text-main);
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
-    .brand-badge {
-      width: 10px;
-      height: 10px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-warm), #8c5e34);
+      color: #0b0f16;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      box-shadow: 0 6px 18px rgba(212, 163, 115, 0.28);
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+
+    .brand-text small {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       list-style: none;
       gap: 28px;
     }
 
     .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 500;
-      transition: color 0.2s ease;
+      color: var(--text-secondary);
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
-      color: #fff;
+      color: var(--accent-warm-light);
     }
 
-    /* Hero Section */
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-ai);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .nav-cta:hover {
+      background: rgba(56, 189, 248, 0.22);
+      transform: translateY(-1px);
+    }
+
+    /* ================= Hero Section ================= */
     .hero {
-      padding: 100px 0 80px;
-      text-align: center;
+      padding: 88px 0 72px;
     }
 
-    .status-pill {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 16px;
-      border-radius: 9999px;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #60a5fa;
-      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(212, 163, 115, 0.12);
+      border: 1px solid var(--border-warm);
+      color: var(--accent-warm-light);
+      font-size: 0.82rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
+    }
+
+    .hero-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-size: clamp(2.1rem, 4.4vw, 3.35rem);
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
       margin-bottom: 20px;
-      letter-spacing: -1px;
     }
 
-    .gradient-text {
-      background: var(--accent-gradient);
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, var(--accent-warm-light), var(--accent-ai));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero p {
-      max-width: 680px;
-      margin: 0 auto 36px;
-      color: var(--text-muted);
-      font-size: 1.15rem;
-      font-weight: 300;
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: 32px;
     }
 
     .hero-actions {
       display: flex;
-      justify-content: center;
-      gap: 16px;
       flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
     }
 
     .btn {
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.25s ease;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.22s ease;
+      font-family: inherit;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+      background: linear-gradient(135deg, var(--accent-warm), #b8824d);
+      color: #0b0f16;
+      box-shadow: 0 10px 26px rgba(212, 163, 115, 0.25);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 14px 32px rgba(212, 163, 115, 0.35);
     }
 
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      border: 1px solid var(--card-border);
+    .btn-secondary {
+      background: var(--bg-card);
+      border-color: var(--border-subtle);
+      color: var(--text-primary);
     }
 
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
+    .btn-secondary:hover {
+      border-color: var(--accent-ai);
+      color: var(--accent-ai);
     }
 
-    /* Section Shared */
-    section {
-      padding: 70px 0;
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    .section-header {
-      margin-bottom: 48px;
-      text-align: center;
+    .metric strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--accent-warm-light);
     }
 
-    .section-header h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
+    .metric span {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
     }
 
-    .section-header p {
+    /* Architectural Profile Card */
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-warm), var(--accent-ai));
+    }
+
+    .blueprint-box {
+      border: 1px dashed rgba(212, 163, 115, 0.35);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: rgba(11, 15, 22, 0.55);
+      margin-bottom: 20px;
+    }
+
+    .profile-meta-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .profile-meta-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .profile-meta-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .profile-meta-list .label {
       color: var(--text-muted);
-      font-size: 1rem;
     }
 
-    /* About Section */
-    .about-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 40px;
-      backdrop-filter: blur(12px);
+    .profile-meta-list .value {
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ================= Sections ================= */
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 6px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+    }
+
+    .section-head p {
+      color: var(--text-secondary);
+      max-width: 460px;
+      font-size: 0.94rem;
+    }
+
+    /* About Grid */
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
+      gap: 24px;
     }
 
-    .about-info h3 {
-      font-size: 1.5rem;
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(212, 163, 115, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .glass-card h3 {
+      font-size: 1.2rem;
       margin-bottom: 12px;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .about-info p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      line-height: 1.7;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .stat-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #60a5fa;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    .glass-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
     }
 
     /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
 
     .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 32px;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      transition: all 0.25s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(59, 130, 246, 0.4);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .project-visual {
+      height: 155px;
+      background: linear-gradient(135deg, #131c2c 0%, #0d131f 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
     }
 
     .project-tag {
-      font-size: 0.75rem;
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #a78bfa;
-      margin-bottom: 14px;
+      background: rgba(11, 15, 22, 0.85);
+      border: 1px solid var(--border-warm);
+      color: var(--accent-warm-light);
     }
 
-    .project-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 12px;
-      color: #f1f5f9;
-    }
-
-    .project-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-
-    .project-meta {
+    .project-body {
+      padding: 24px;
+      flex: 1;
       display: flex;
-      gap: 8px;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .project-body h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .pill-row {
+      display: flex;
       flex-wrap: wrap;
+      gap: 8px;
     }
 
     .pill {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       padding: 4px 10px;
-      border-radius: 6px;
+      border-radius: 8px;
       background: rgba(255, 255, 255, 0.05);
-      color: #cbd5e1;
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     /* Skills Grid */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .skill-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-
-    .skill-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #60a5fa;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
     .skill-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 10px;
+      margin-top: 14px;
     }
 
     .skill-list li {
-      color: var(--text-muted);
       font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
     }
 
     .skill-list li::before {
-      content: "•";
-      color: #8b5cf6;
-      font-weight: bold;
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--accent-warm);
     }
 
-    /* Contact Section */
-    .contact-box {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 20px;
-      padding: 50px;
+    /* Contact Box */
+    .contact-banner {
+      background: linear-gradient(135deg, rgba(212, 163, 115, 0.12), rgba(56, 189, 248, 0.1));
+      border: 1px solid var(--border-warm);
+      border-radius: 24px;
+      padding: 48px 36px;
       text-align: center;
-      max-width: 760px;
-      margin: 0 auto;
     }
 
-    .contact-box h2 {
-      font-size: 2.2rem;
+    .contact-banner h2 {
+      font-size: 1.9rem;
       margin-bottom: 12px;
     }
 
-    .contact-box p {
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      font-size: 1.05rem;
+    .contact-banner p {
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 26px;
     }
 
-    /* Footer */
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
     footer {
-      border-top: 1px solid var(--card-border);
-      padding: 40px 0;
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 0;
       text-align: center;
-      color: #64748b;
+      color: var(--text-muted);
       font-size: 0.85rem;
     }
 
-    /* ========================================================
-       AI Chatbot Floating Widget Styles
-       ======================================================== */
+    /* ================= Bottom-Right AI Robot Chatbot ================= */
     .chatbot-launcher {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.45);
+      width: 66px;
+      height: 66px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #172338, #0f172a);
+      border: 2px solid rgba(56, 189, 248, 0.65);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 22px rgba(56, 189, 248, 0.25);
       cursor: pointer;
       z-index: 999;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      animation: launcherFloat 4s ease-in-out infinite;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+      animation: botFloat 3.4s ease-in-out infinite;
     }
 
     .chatbot-launcher:hover {
-      transform: scale(1.08) translateY(-2px);
-      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.65);
-    }
-
-    @keyframes launcherFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.65), 0 0 28px rgba(56, 189, 248, 0.45);
     }
 
     .chatbot-launcher svg {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
     }
 
-    .launcher-badge {
+    @keyframes botFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .launcher-status-dot {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 14px;
-      height: 14px;
-      background: #10b981;
-      border: 2px solid #0b0f19;
+      top: -4px;
+      right: -4px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
+      border: 2.5px solid var(--bg-base);
+      background: var(--warning);
+      transition: background 0.25s;
+    }
+
+    .launcher-status-dot.connected {
+      background: var(--success);
     }
 
     .launcher-tooltip {
       position: absolute;
-      right: 74px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid var(--card-border);
-      color: #e2e8f0;
+      right: 78px;
+      bottom: 14px;
+      background: #1a2334;
+      color: var(--text-primary);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 8px 14px;
+      border-radius: 12px;
       font-size: 0.82rem;
-      padding: 7px 14px;
-      border-radius: 10px;
+      font-weight: 500;
       white-space: nowrap;
-      pointer-events: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      backdrop-filter: blur(8px);
-      opacity: 0.95;
-    }
-
-    /* Chat Window Container */
-    .chat-window {
-      position: fixed;
-      bottom: 96px;
-      right: 24px;
-      width: 380px;
-      max-width: calc(100vw - 32px);
-      height: 550px;
-      max-height: calc(100vh - 120px);
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-      transform: scale(0.9) translateY(20px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
       opacity: 0;
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(8px);
+      transition: all 0.22s ease;
+    }
+
+    .chatbot-launcher:hover .launcher-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Chat Drawer Window */
+    .chat-window {
+      position: fixed;
+      bottom: 104px;
+      right: 24px;
+      width: 390px;
+      max-width: calc(100vw - 32px);
+      height: 550px;
+      max-height: calc(100vh - 130px);
+      background: #0f1623;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 22px;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.96);
+      transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .chat-window.active {
-      transform: scale(1) translateY(0);
       opacity: 1;
-      pointer-events: all;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
 
     /* Chat Header */
     .chat-header {
-      padding: 14px 18px;
-      background: rgba(30, 41, 59, 0.7);
-      border-bottom: 1px solid var(--card-border);
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #162033, #111927);
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
     }
 
-    .chat-header-profile {
+    .chat-header-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      min-width: 0;
     }
 
-    .chat-avatar-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+    .chat-avatar-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
     }
 
-    .chat-avatar-wrap svg {
+    .chat-avatar-badge svg {
       width: 28px;
       height: 28px;
     }
 
-    .online-dot {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 10px;
-      height: 10px;
-      background: #10b981;
-      border: 2px solid #0f172a;
-      border-radius: 50%;
-    }
-
-    .chat-title h4 {
+    .chat-title-block h4 {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #fff;
+      line-height: 1.25;
+    }
+
+    .connection-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: var(--warning);
+      margin-top: 2px;
+    }
+
+    .connection-pill.ready {
+      color: var(--success);
+    }
+
+    .connection-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .chat-header-actions {
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .chat-title p {
-      font-size: 0.75rem;
-      color: #94a3b8;
-    }
-
-    .chat-close-btn {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 1.25rem;
-      cursor: pointer;
-      width: 32px;
+    .icon-btn {
       height: 32px;
-      border-radius: 8px;
-      display: flex;
+      padding: 0 9px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s, color 0.2s;
+      gap: 4px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
     }
 
-    .chat-close-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+    .icon-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
       color: #fff;
     }
 
-    /* Chat Messages Body */
+    .icon-btn.active-tab {
+      background: rgba(212, 163, 115, 0.2);
+      border-color: var(--accent-warm);
+      color: var(--accent-warm-light);
+    }
+
+    /* Main Content Stack inside Chat */
+    .chat-main {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* Settings Overlay Panel */
+    .settings-panel {
+      position: absolute;
+      inset: 0;
+      background: #101725;
+      z-index: 10;
+      padding: 18px;
+      overflow-y: auto;
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .settings-panel.open {
+      display: flex;
+    }
+
+    .settings-panel h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-warm-light);
+    }
+
+    .settings-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .settings-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #090d14;
+      color: var(--text-primary);
+      font-size: 0.84rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .settings-input:focus {
+      border-color: var(--accent-ai);
+    }
+
+    .settings-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+      transition: all 0.18s;
+    }
+
+    .btn-save {
+      background: var(--accent-ai);
+      color: #07111e;
+      flex: 1;
+    }
+
+    .btn-save:hover {
+      background: #7dd3fc;
+    }
+
+    .btn-test {
+      background: rgba(212, 163, 115, 0.15);
+      border-color: var(--border-warm);
+      color: var(--accent-warm-light);
+    }
+
+    .btn-test:hover {
+      background: rgba(212, 163, 115, 0.28);
+    }
+
+    .btn-reset {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .settings-feedback {
+      font-size: 0.8rem;
+      padding: 10px 12px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .settings-feedback.show {
+      display: block;
+    }
+
+    .settings-feedback.ok {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+
+    .settings-feedback.warn {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fcd34d;
+    }
+
+    .settings-feedback.err {
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+
+    .settings-tips {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.77rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .settings-tips code {
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* Chat Body */
     .chat-body {
       flex: 1;
       padding: 16px;
@@ -577,29 +912,11 @@
       gap: 14px;
     }
 
-    .chat-body::-webkit-scrollbar {
-      width: 5px;
-    }
-    .chat-body::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-    }
-
-    /* Bubbles */
     .chat-msg {
       display: flex;
-      gap: 10px;
-      max-width: 86%;
-      animation: msgPop 0.2s ease-out;
-    }
-
-    @keyframes msgPop {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .chat-msg.bot {
-      align-self: flex-start;
+      gap: 9px;
+      max-width: 90%;
+      align-items: flex-end;
     }
 
     .chat-msg.user {
@@ -607,477 +924,580 @@
       flex-direction: row-reverse;
     }
 
-    .chat-msg-avatar {
-      width: 30px;
-      height: 30px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: rgba(59, 130, 246, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .chat-msg.bot {
+      align-self: flex-start;
     }
 
-    .chat-msg-avatar svg {
-      width: 22px;
-      height: 22px;
+    .msg-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .msg-avatar svg {
+      width: 20px;
+      height: 20px;
     }
 
     .chat-bubble {
-      padding: 11px 15px;
-      font-size: 0.9rem;
-      line-height: 1.5;
+      padding: 10px 14px;
       border-radius: 16px;
+      font-size: 0.87rem;
+      line-height: 1.55;
       word-break: break-word;
-      white-space: pre-wrap;
     }
 
     .chat-msg.bot .chat-bubble {
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #f1f5f9;
-      border-top-left-radius: 4px;
+      background: #172133;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom-left-radius: 4px;
+      color: var(--text-primary);
     }
 
     .chat-msg.user .chat-bubble {
-      background: linear-gradient(135deg, #2563eb, #6366f1);
-      color: #ffffff;
-      border-top-right-radius: 4px;
+      background: linear-gradient(135deg, #2563eb, #0284c7);
+      color: #fff;
+      border-bottom-right-radius: 4px;
     }
 
-    /* Quick Chips */
     .quick-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 10px;
     }
 
     .chip-btn {
-      font-size: 0.78rem;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      color: #93c5fd;
-      padding: 5px 11px;
-      border-radius: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+      font-size: 0.76rem;
       cursor: pointer;
-      transition: all 0.2s ease;
+      font-family: inherit;
+      transition: all 0.18s;
     }
 
     .chip-btn:hover {
-      background: rgba(59, 130, 246, 0.25);
-      border-color: #60a5fa;
+      background: rgba(56, 189, 248, 0.22);
       color: #fff;
     }
 
-    /* Typing Dots Animation */
-    .typing-indicator {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 10px 14px;
+    .inline-config-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(212, 163, 115, 0.2);
+      border: 1px solid var(--accent-warm);
+      color: var(--accent-warm-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .dot {
+    /* Typing Animation */
+    .typing-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 2px;
+    }
+
+    .typing-dots span {
       width: 6px;
       height: 6px;
-      background: #94a3b8;
       border-radius: 50%;
-      animation: dotPulse 1.4s infinite ease-in-out;
+      background: var(--accent-ai);
+      animation: bounceDot 1.2s infinite ease-in-out;
     }
 
-    .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot:nth-child(3) { animation-delay: 0.4s; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.18s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.36s; }
 
-    @keyframes dotPulse {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: scale(0.65); opacity: 0.4; }
       40% { transform: scale(1.1); opacity: 1; }
     }
 
-    /* Chat Footer & Input */
+    /* Chat Footer */
     .chat-footer {
       padding: 12px 14px;
-      background: rgba(30, 41, 59, 0.6);
-      border-top: 1px solid var(--card-border);
+      background: #0d131f;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    .chat-input-form {
+    .chat-form {
       display: flex;
-      align-items: center;
       gap: 8px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 6px 10px;
-    }
-
-    .chat-input-form:focus-within {
-      border-color: #3b82f6;
+      align-items: center;
     }
 
     .chat-input {
       flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 0.9rem;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #141c2b;
+      color: var(--text-primary);
+      font-size: 0.87rem;
       font-family: inherit;
+      outline: none;
     }
 
-    .chat-input::placeholder {
-      color: #64748b;
+    .chat-input:focus {
+      border-color: var(--accent-ai);
     }
 
     .chat-send-btn {
-      background: #3b82f6;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      color: #fff;
+      display: grid;
+      place-items: center;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+      flex-shrink: 0;
+      transition: transform 0.15s, opacity 0.15s;
     }
 
-    .chat-send-btn:hover {
-      background: #2563eb;
+    .chat-send-btn:hover:not(:disabled) {
       transform: scale(1.05);
     }
 
     .chat-send-btn:disabled {
-      background: #475569;
+      opacity: 0.45;
       cursor: not-allowed;
-      transform: none;
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
+    /* ================= Responsive ================= */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
       .nav-links {
         display: none;
       }
-      .about-card {
-        grid-template-columns: 1fr;
-      }
-      .contact-box {
-        padding: 30px 20px;
-      }
+    }
+
+    @media (max-width: 480px) {
       .chat-window {
         right: 12px;
-        bottom: 84px;
+        bottom: 96px;
         width: calc(100vw - 24px);
-        height: 480px;
+        height: 72vh;
       }
       .chatbot-launcher {
         right: 16px;
         bottom: 16px;
       }
-      .launcher-tooltip {
-        display: none;
+      .hero-metrics {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header / Navigation -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="brand">
-          <span class="brand-badge"></span>
-          <span>黃種州 Chung-Chou</span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#about">關於我</a></li>
-          <li><a href="#projects">專案研究</a></li>
-          <li><a href="#skills">專業技能</a></li>
-          <li><a href="#contact">聯絡方式</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="status-pill">
-        <span>✨ 國立台中科技大學 室內設計系碩士班</span>
-      </div>
-      <h1>
-        探索空間美學與<br>
-        <span class="gradient-text">生成式 AI 前瞻應用</span>
-      </h1>
-      <p>
-        你好！我是黃種州。專注於將人工智慧（Generative AI）、智慧自動化工作流與傳統室內空間規劃相結合，打造兼具生活溫度與前瞻科技的空間體驗。
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">瀏覽研究專案</a>
-        <a href="#contact" class="btn btn-outline">與我聯繫</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <div class="about-card">
-        <div class="about-info">
-          <div class="project-tag">About Me</div>
-          <h3>學術研究與設計理念</h3>
-          <p>
-            現就讀於國立台中科技大學 日間部碩士班 室內設計系，並積極投入「AI 應用規劃」與空間演算領域。致力於研究如何運用大語言模型、視覺生成模型與自動化管線，縮短從概念發想到空間落地的週期，為室內設計帶來全新的可能。
-          </p>
-          <div class="project-meta">
-            <span class="pill">📍 台中, 台灣</span>
-            <span class="pill">🏛️ NTCUST Interior Design</span>
-            <span class="pill">🤖 AI Workflow</span>
-          </div>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-number">01</div>
-            <div class="stat-label">碩士一年級上學期</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">3+</div>
-            <div class="stat-label">AI 空間輔助專案</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">創新與探索熱忱</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">2026</div>
-            <div class="stat-label">前瞻研究啟動</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <h2>精選專案與研究主題</h2>
-        <p>結合數位工具、幾何演算與生成式 AI 輔助規劃</p>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card">
-          <div>
-            <div class="project-tag">AI & Architecture</div>
-            <h3>AI 輔助空間佈局與動線規劃</h3>
-            <p>
-              探討運用 AI 演算法分析居住者行為動線，並透過參數化條件快速生成最適格局配置，提升前期規劃效率與空間使用率。
-            </p>
-          </div>
-          <div class="project-meta">
-            <span class="pill">AI 規劃</span>
-            <span class="pill">動線模擬</span>
-            <span class="pill">概念生成</span>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card">
-          <div>
-            <div class="project-tag">Lighting & Materials</div>
-            <h3>虛擬光影與材質情感感知</h3>
-            <p>
-              透過數位彩現與神經渲染技術，模擬不同時段自然光影與建材肌理對居住者情緒的互動關係，建構沉浸式感官氛圍。
-            </p>
-          </div>
-          <div class="project-meta">
-            <span class="pill">光影模擬</span>
-            <span class="pill">材質肌理</span>
-            <span class="pill">情感設計</span>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="project-card">
-          <div>
-            <div class="project-tag">Smart Home</div>
-            <h3>智慧生活住宅原型概念設計</h3>
-            <p>
-              以使用者為中心的智慧住宅設計，整合物聯網感測情境與永續綠建材思維，打造靈活自適應的現代都會生活場域。
-            </p>
-          </div>
-          <div class="project-meta">
-            <span class="pill">智慧住宅</span>
-            <span class="pill">IoT 整合</span>
-            <span class="pill">永續空間</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header">
-        <h2>專業能力與核心工具</h2>
-        <p>跨領域的設計思維與現代化數位技能組合</p>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h4>📐 空間設計與規劃</h4>
-          <ul class="skill-list">
-            <li>室內格局佈置與動線規劃</li>
-            <li>人體工學與使用行為研究</li>
-            <li>施工圖說與細部節點設計</li>
-            <li>色彩學與軟裝陳設搭配</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>💻 3D 數位建模與彩現</h4>
-          <ul class="skill-list">
-            <li>AutoCAD 專業平面圖繪製</li>
-            <li>SketchUp 空間立體建模</li>
-            <li>Enscape / Lumion 即時彩現</li>
-            <li>Rhino 幾何曲面輔助</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>🤖 AI 應用規劃與工具</h4>
-          <ul class="skill-list">
-            <li>Prompt Engineering 提示詞工程</li>
-            <li>Midjourney / Stable Diffusion 生成</li>
-            <li>MCP (Model Context Protocol) 整合</li>
-            <li>Antigravity 自動化協同工作流</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-box">
-        <h2>歡迎交流與合作</h2>
-        <p>無論是有關室內設計、AI應用研究，或跨領域專案合作，都歡迎隨時與我聯繫！</p>
-        <div class="hero-actions">
-          <a href="https://github.com/scorpionmax1120-sketch" target="_blank" class="btn btn-primary">
-            訪問 GitHub 個人檔案
-          </a>
-          <a href="mailto:contact@example.com" class="btn btn-outline">
-            發送電子郵件
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2026 黃種州 (Chung-Chou Huang) · 國立台中科技大學 室內設計系碩士班</p>
-      <p style="margin-top: 6px; font-size: 0.8rem; color: #475569;">
-        Deployed with GitHub Pages & Powered by Antigravity
-      </p>
-    </div>
-  </footer>
-
-  <!-- ========================================================
-       SVG Symbol: 程式繪製的高科技小機器人大頭貼
-       ======================================================== -->
-  <svg style="display: none;">
-    <symbol id="icon-robot" viewBox="0 0 100 100">
-      <!-- Antenna 天線 -->
-      <line x1="50" y1="8" x2="50" y2="22" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="50" cy="8" r="5" fill="#38bdf8"/>
-      <!-- Ears 耳罩耳機 -->
-      <rect x="14" y="38" width="8" height="24" rx="4" fill="#3b82f6"/>
-      <rect x="78" y="38" width="8" height="24" rx="4" fill="#3b82f6"/>
-      <!-- Robot Head 機器人頭部外框 -->
-      <rect x="20" y="22" width="60" height="54" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
-      <!-- Face Screen 面部螢幕 -->
-      <rect x="27" y="30" width="46" height="36" rx="10" fill="#090d16" stroke="#334155" stroke-width="1.5"/>
-      <!-- Glowing Eyes 閃爍大眼睛 -->
-      <ellipse cx="40" cy="46" rx="5" ry="6" fill="#38bdf8"/>
-      <ellipse cx="60" cy="46" rx="5" ry="6" fill="#38bdf8"/>
-      <circle cx="42" cy="44" r="1.8" fill="#ffffff"/>
-      <circle cx="62" cy="44" r="1.8" fill="#ffffff"/>
-      <!-- Smile 微笑弧線 -->
-      <path d="M42 56 Q50 62 58 56" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <!-- Blush 腮紅 -->
-      <circle cx="33" cy="53" r="2.5" fill="#ec4899" opacity="0.6"/>
-      <circle cx="67" cy="53" r="2.5" fill="#ec4899" opacity="0.6"/>
-      <!-- Neck & Base 頸部基座 -->
-      <rect x="42" y="76" width="16" height="8" rx="2" fill="#2563eb"/>
-      <path d="M26 84 C26 84 38 88 50 88 C62 88 74 84 74 84 L78 94 C78 94 64 98 50 98 C36 98 22 94 22 94 Z" fill="#3b82f6"/>
+  <!-- Hidden SVG Mascot Symbol -->
+  <svg style="display: none;" aria-hidden="true">
+    <symbol id="robot-mascot" viewBox="0 0 100 100">
+      <line x1="50" y1="8" x2="50" y2="22" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+      <circle cx="50" cy="8" r="5" fill="#d4a373" />
+      <rect x="13" y="39" width="8" height="22" rx="4" fill="#2563eb" />
+      <rect x="79" y="39" width="8" height="22" rx="4" fill="#2563eb" />
+      <rect x="20" y="22" width="60" height="54" rx="16" fill="#172338" stroke="#38bdf8" stroke-width="2.5" />
+      <rect x="27" y="30" width="46" height="36" rx="10" fill="#090e17" stroke="#334155" stroke-width="1.5" />
+      <ellipse cx="40" cy="46" rx="5" ry="6" fill="#38bdf8" />
+      <ellipse cx="60" cy="46" rx="5" ry="6" fill="#38bdf8" />
+      <circle cx="42" cy="44" r="1.8" fill="#ffffff" />
+      <circle cx="62" cy="44" r="1.8" fill="#ffffff" />
+      <path d="M41 56 Q50 62 59 56" stroke="#d4a373" stroke-width="2.6" stroke-linecap="round" fill="none" />
+      <circle cx="33" cy="53" r="2.4" fill="#ec4899" opacity="0.65" />
+      <circle cx="67" cy="53" r="2.4" fill="#ec4899" opacity="0.65" />
+      <rect x="42" y="76" width="16" height="7" rx="2" fill="#2563eb" />
+      <path d="M26 83 C26 83 38 87 50 87 C62 87 74 83 74 83 L77 93 C77 93 64 97 50 97 C36 97 23 93 23 93 Z" fill="#38bdf8" />
     </symbol>
   </svg>
 
-  <!-- ========================================================
-       右下角 AI 客服助理小機器人 HTML 結構
-       ======================================================== -->
-  <!-- 浮動啟動按鈕 -->
-  <div class="chatbot-launcher" id="chatLauncher" title="與種州的 AI 助理小機器人對話">
-    <div class="launcher-tooltip">💬 點我問問種州的事！</div>
-    <span class="launcher-badge"></span>
-    <svg><use href="#icon-robot"/></svg>
-  </div>
+  <!-- Navbar -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark">CCH</div>
+        <div class="brand-text">
+          <span>黃種州 Chung-Chou</span>
+          <small>INTERIOR DESIGN × AI PLANNING</small>
+        </div>
+      </a>
 
-  <!-- 對話視窗 -->
-  <div class="chat-window" id="chatWindow">
-    <!-- 頂部標題列 -->
-    <div class="chat-header">
-      <div class="chat-header-profile">
-        <div class="chat-avatar-wrap">
-          <svg><use href="#icon-robot"/></svg>
-          <span class="online-dot"></span>
-        </div>
-        <div class="chat-title">
-          <h4>種州的 AI 助理 🤖</h4>
-          <p>OpenRouter 驅動 · 智能答覆</p>
-        </div>
-      </div>
-      <button class="chat-close-btn" id="chatCloseBtn" aria-label="關閉聊天視窗">✕</button>
+      <ul class="nav-links">
+        <li><a href="#about">關於我</a></li>
+        <li><a href="#projects">設計與研究</a></li>
+        <li><a href="#skills">專業工具</a></li>
+        <li><a href="#contact">聯絡合作</a></li>
+      </ul>
+
+      <button class="nav-cta" id="headerChatBtn">🤖 呼叫 AI 小客服</button>
     </div>
+  </header>
 
-    <!-- 訊息區域 -->
-    <div class="chat-body" id="chatBody">
-      <!-- 初始機器人歡迎詞 -->
-      <div class="chat-msg bot">
-        <div class="chat-msg-avatar">
-          <svg><use href="#icon-robot"/></svg>
+  <!-- Hero -->
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            國立台中科技大學 · 室內設計系碩士班研一
+          </div>
+          <h1>
+            以空間尺度為骨，<br />
+            <span class="highlight">生成式 AI 規劃</span>為翼
+          </h1>
+          <p class="hero-desc">
+            你好，我是<strong>黃種州</strong>。目前就讀於國立台中科技大學室內設計系碩士班，探索建築室內空間美學與大型語言模型（LLM）、視覺生成 AI 及自動化代理（AI Agents）的跨界整合，致力於打造更有溫度且高效率的未來生活場域。
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">瀏覽設計與 AI 研究</a>
+            <button class="btn btn-secondary" id="heroChatBtn">💬 與右下角 AI 小客服對話</button>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Space + AI</strong>
+              <span>人本動線 × 智慧空間研究</span>
+            </div>
+            <div class="metric">
+              <strong>3D &amp; GenAI</strong>
+              <span>建模彩現與 AI 輔助提案</span>
+            </div>
+            <div class="metric">
+              <strong>Taichung, TW</strong>
+              <span>台灣台中 · 歡迎跨界交流</span>
+            </div>
+          </div>
         </div>
-        <div class="chat-bubble">
-          👋 你好！我是黃種州的專屬 AI 助理小機器人！<br>
-          有任何關於種州的學歷背景、室內設計專業、AI 應用研究或合作想法，都可以問我喔！
-          <div class="quick-chips">
-            <button class="chip-btn" data-query="請問種州的研究方向與專長是什麼？">💡 研究專長？</button>
-            <button class="chip-btn" data-query="種州擅長哪些 3D 建模與設計軟體？">📐 擅長軟體？</button>
-            <button class="chip-btn" data-query="如何與種州取得聯繫？">📫 如何聯繫？</button>
+
+        <aside class="profile-card">
+          <div class="blueprint-box">
+            <svg viewBox="0 0 320 150" width="100%" height="140" aria-label="空間平面概念線稿">
+              <rect x="14" y="14" width="292" height="122" fill="none" stroke="#d4a373" stroke-width="1.5" stroke-opacity="0.7" />
+              <line x1="120" y1="14" x2="120" y2="92" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="4 3" />
+              <line x1="120" y1="92" x2="224" y2="92" stroke="#38bdf8" stroke-width="1.4" />
+              <path d="M 120 92 A 28 28 0 0 1 148 120" fill="none" stroke="#d4a373" stroke-width="1.2" />
+              <rect x="28" y="28" width="76" height="44" rx="4" fill="rgba(212,163,115,0.12)" stroke="#d4a373" stroke-width="1" />
+              <rect x="234" y="28" width="56" height="86" rx="4" fill="rgba(56,189,248,0.09)" stroke="#38bdf8" stroke-width="1" />
+              <circle cx="174" cy="54" r="18" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3" />
+              <text x="42" y="54" fill="#ecc8a2" font-size="10" font-family="sans-serif">LIVING</text>
+              <text x="243" y="75" fill="#7dd3fc" font-size="10" font-family="sans-serif">STUDIO</text>
+            </svg>
+          </div>
+          <ul class="profile-meta-list">
+            <li><span class="label">姓名</span><span class="value">黃種州 (Chung-Chou Huang)</span></li>
+            <li><span class="label">就讀系所</span><span class="value">臺中科大 室內設計系碩士班</span></li>
+            <li><span class="label">當前課程</span><span class="value">AI 應用規劃與系統實作</span></li>
+            <li><span class="label">研究興趣</span><span class="value">空間生成工作流 · 智慧住宅</span></li>
+            <li><span class="label">AI 助理</span><span class="value">OpenRouter + GAS 驅動</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">ABOUT &amp; VISION</div>
+            <h2>設計思維與研究方向</h2>
+          </div>
+          <p>將傳統空間設計的細膩尺度感，結合現代化 AI 自動化工作流。</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass-card">
+            <h3>🏛️ 人本尺度與光影敘事</h3>
+            <p>
+              好的室內空間不僅止於視覺風格，更在於動線流暢度、自然採光引導與材質觸感的平衡。我著重從使用者的日常行為出發，透過精準比例與空間留白，營造沉靜且實用的生活場所。
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3>⚡ AI 應用規劃與跨界實作</h3>
+            <p>
+              在碩士班「AI 應用規劃」研究中，我專注於將生成式影像模型、OpenRouter 推理型語言模型與 Google Apps Script / MCP 工具串接，加速前期設計發想、客戶溝通與知識管理效率。
+            </p>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">SELECTED WORKS</div>
+            <h2>精選專案與實驗研究</h2>
+          </div>
+          <p>涵蓋住宅空間規劃、材質聲學實驗與生成式 AI 數位工作流。</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-visual">
+              <span class="project-tag">RESIDENTIAL · 2026</span>
+              <svg viewBox="0 0 240 100" width="210" height="90">
+                <rect x="20" y="15" width="200" height="70" fill="none" stroke="#d4a373" stroke-width="1.8" />
+                <line x1="95" y1="15" x2="95" y2="85" stroke="#d4a373" stroke-opacity="0.5" />
+                <rect x="112" y="28" width="90" height="44" fill="rgba(212,163,115,0.14)" stroke="#ecc8a2" stroke-width="1" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <div>
+                <h3>光影織度：都會極簡微宅空間改造</h3>
+                <p>以彈性拉門與隱藏式收納重新定義 14 坪小宅尺度，將西曬自然光轉化為室內柔和光帶，兼顧獨處辦公與親友聚會需求。</p>
+              </div>
+              <div class="pill-row">
+                <span class="pill">動線重塑</span>
+                <span class="pill">採光分析</span>
+                <span class="pill">AutoCAD / Enscape</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <span class="project-tag">AI WORKFLOW · 2026</span>
+              <svg viewBox="0 0 240 100" width="210" height="90">
+                <circle cx="55" cy="50" r="20" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.6" />
+                <circle cx="120" cy="50" r="20" fill="rgba(212,163,115,0.12)" stroke="#d4a373" stroke-width="1.6" />
+                <circle cx="185" cy="50" r="20" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.6" />
+                <line x1="75" y1="50" x2="100" y2="50" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="140" y1="50" x2="165" y2="50" stroke="#94a3b8" stroke-width="1.5" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <div>
+                <h3>GenAI × Interior：概念生成與智能客服串接</h3>
+                <p>結合 GitHub Pages 靜態前端、Google Apps Script 無伺服器中繼與 OpenRouter Reasoning API，打造可即時配置與諮詢的個人作品集助理。</p>
+              </div>
+              <div class="pill-row">
+                <span class="pill">OpenRouter API</span>
+                <span class="pill">Google Apps Script</span>
+                <span class="pill">Prompt Engineering</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <span class="project-tag">MATERIALITY · 2025</span>
+              <svg viewBox="0 0 240 100" width="210" height="90">
+                <path d="M25 75 Q70 20 120 55 T215 30" fill="none" stroke="#d4a373" stroke-width="2" />
+                <path d="M25 82 Q80 40 130 68 T215 48" fill="none" stroke="#38bdf8" stroke-width="1.3" stroke-opacity="0.7" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <div>
+                <h3>靜謐茶室：永續竹木材質與聲學空間實驗</h3>
+                <p>導入台灣在地孟宗竹材與微孔吸音結構，透過曲面木格柵導引自然通風與柔和漫射光，創造低迴響的都會品茗空間。</p>
+              </div>
+              <div class="pill-row">
+                <span class="pill">永續綠建材</span>
+                <span class="pill">聲學設計</span>
+                <span class="pill">Rhino / SketchUp</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <span class="project-tag">SMART SPACE · 2025</span>
+              <svg viewBox="0 0 240 100" width="210" height="90">
+                <rect x="45" y="20" width="150" height="60" rx="12" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="1.5" />
+                <circle cx="120" cy="50" r="14" fill="none" stroke="#ecc8a2" stroke-width="1.5" />
+                <circle cx="120" cy="50" r="4" fill="#10b981" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <div>
+                <h3>智慧高齡友善宅：IoT 情境感測生活原型</h3>
+                <p>整合無障礙通用設計準則與節律照明控制、離床與環境異常偵測機制，讓科技隱身於溫潤的居家木質語彙之中。</p>
+              </div>
+              <div class="pill-row">
+                <span class="pill">通用設計</span>
+                <span class="pill">IoT 情境連動</span>
+                <span class="pill">健康照護空間</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">CAPABILITIES</div>
+            <h2>核心專長與工具矩陣</h2>
+          </div>
+          <p>跨足空間設計圖學、即時彩現與 AI 應用開發的複合能力。</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="glass-card">
+            <h3>📐 空間設計與實務</h3>
+            <ul class="skill-list">
+              <li>住宅與商業空間格局配置</li>
+              <li>動線優化與人體工學評估</li>
+              <li>平立剖施工圖與細部節點</li>
+              <li>材質計畫、燈光與軟裝搭配</li>
+            </ul>
+          </div>
+          <div class="glass-card">
+            <h3>🖥️ 3D 建模與視覺呈現</h3>
+            <ul class="skill-list">
+              <li>AutoCAD 專業建築平面製圖</li>
+              <li>SketchUp 快速空間量體建構</li>
+              <li>Enscape / Lumion 即時光影彩現</li>
+              <li>Rhino 參數化與曲面造型輔助</li>
+            </ul>
+          </div>
+          <div class="glass-card">
+            <h3>🤖 AI 應用規劃與開發</h3>
+            <ul class="skill-list">
+              <li>OpenRouter 推理模型 API 串接</li>
+              <li>Google Apps Script 無伺服器後端</li>
+              <li>Midjourney / SD 風格概念生成</li>
+              <li>MCP 工具鏈與 GitHub Pages 部署</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-banner">
+          <h2>歡迎交流、學術研究與專案合作</h2>
+          <p>
+            無論您對室內空間設計、生成式 AI 工作流或智慧空間規劃有任何想法，歡迎直接點擊右下角與我的 AI 小客服聊聊，或透過 GitHub 與我聯繫。
+          </p>
+          <div class="contact-actions">
+            <a href="https://github.com/scorpionmax1120-sketch" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              前往 GitHub 個人主頁
+            </a>
+            <button class="btn btn-secondary" id="contactChatBtn">
+              🤖 詢問 AI 小客服
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 黃種州 Chung-Chou Huang · 國立台中科技大學 室內設計系碩士班</p>
+    </div>
+  </footer>
+
+  <!-- ================= 右下角 AI 小客服機器人 ================= -->
+  <div class="chatbot-launcher" id="chatLauncher" role="button" tabindex="0" aria-label="開啟 AI 小客服視窗">
+    <div class="launcher-tooltip">🤖 點擊與小客服對話 / 設定 GAS</div>
+    <span class="launcher-status-dot" id="launcherDot" title="GAS 連線狀態"></span>
+    <svg><use href="#robot-mascot" /></svg>
+  </div>
+
+  <div class="chat-window" id="chatWindow" aria-hidden="true">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar-badge">
+          <svg><use href="#robot-mascot" /></svg>
+        </div>
+        <div class="chat-title-block">
+          <h4>種州的 AI 小客服</h4>
+          <div class="connection-pill" id="connectionPill">
+            <span class="dot"></span>
+            <span id="connectionText">尚未設定 GAS 網址</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="icon-btn" id="chatSettingsBtn" title="設定 Google Apps Script 網址">⚙️ 設定</button>
+        <button class="icon-btn" id="chatClearBtn" title="清除目前對話紀錄">🗑️</button>
+        <button class="icon-btn" id="chatCloseBtn" title="關閉視窗">✕</button>
+      </div>
     </div>
 
-    <!-- 底部輸入區 -->
+    <!-- Chat Main Area -->
+    <div class="chat-main">
+      <!-- Settings Panel (GAS Web App URL Configuration) -->
+      <div class="settings-panel" id="settingsPanel">
+        <h5>⚙️ Google Apps Script 後端設定</h5>
+        <p class="settings-desc">
+          請貼上您部署完成的 GAS 網頁應用程式網址（結尾為 <code>/exec</code>），設定會自動儲存在您的瀏覽器本機中（localStorage）。
+        </p>
+
+        <div class="form-group">
+          <label for="gasUrlInput">GAS Web App URL</label>
+          <input
+            type="url"
+            id="gasUrlInput"
+            class="settings-input"
+            placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="settings-actions">
+          <button type="button" class="btn-sm btn-test" id="testGasBtn">🔌 測試連線</button>
+          <button type="button" class="btn-sm btn-save" id="saveGasBtn">💾 儲存設定</button>
+          <button type="button" class="btn-sm btn-reset" id="resetGasBtn">清除</button>
+        </div>
+
+        <div class="settings-feedback" id="settingsFeedback"></div>
+
+        <div class="settings-tips">
+          <strong>📌 GAS 部署檢查清單：</strong><br />
+          1. 在 GAS「專案設定 → 指令碼屬性」新增 <code>OPENROUTER_API_KEY</code>。<br />
+          2. 部署為「網頁應用程式」時，執行身分選「我」，誰可以存取務必選「<strong>任何人 (Anyone)</strong>」。<br />
+          3. 本前端已支援 OpenRouter <code>reasoning_details</code> 多輪推理狀態保留。
+        </div>
+      </div>
+
+      <!-- Messages List -->
+      <div class="chat-body" id="chatBody"></div>
+    </div>
+
+    <!-- Chat Footer -->
     <div class="chat-footer">
-      <form class="chat-input-form" id="chatForm">
-        <input 
-          type="text" 
-          id="chatInput" 
-          class="chat-input" 
-          placeholder="詢問關於種州的事項..." 
+      <form class="chat-form" id="chatForm">
+        <input
+          type="text"
+          id="chatInput"
+          class="chat-input"
+          placeholder="問問種州的設計作品或研究方向..."
           autocomplete="off"
         />
         <button type="submit" class="chat-send-btn" id="chatSendBtn" aria-label="發送訊息">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
@@ -1086,51 +1506,219 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       前端對話控制與 Google Apps Script 串接腳本
-       ======================================================== -->
   <script>
-    // =========================================================================
-    // ⚠️ 請在此填入您的 Google Apps Script 網頁應用程式網址 (Web App URL)
-    // 部署 GAS 後會獲得類似：https://script.google.com/macros/s/AKfycb.../exec
-    // =========================================================================
-    const GAS_WEB_APP_URL = "YOUR_GAS_WEB_APP_URL_HERE"; 
+    const STORAGE_KEY_GAS_URL = 'chungchou_gas_webapp_url_v1';
 
-    // DOM 元素選取
     const chatLauncher = document.getElementById('chatLauncher');
     const chatWindow = document.getElementById('chatWindow');
     const chatCloseBtn = document.getElementById('chatCloseBtn');
+    const chatSettingsBtn = document.getElementById('chatSettingsBtn');
+    const chatClearBtn = document.getElementById('chatClearBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const gasUrlInput = document.getElementById('gasUrlInput');
+    const testGasBtn = document.getElementById('testGasBtn');
+    const saveGasBtn = document.getElementById('saveGasBtn');
+    const resetGasBtn = document.getElementById('resetGasBtn');
+    const settingsFeedback = document.getElementById('settingsFeedback');
+    const connectionPill = document.getElementById('connectionPill');
+    const connectionText = document.getElementById('connectionText');
+    const launcherDot = document.getElementById('launcherDot');
     const chatBody = document.getElementById('chatBody');
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatSendBtn = document.getElementById('chatSendBtn');
+    const headerChatBtn = document.getElementById('headerChatBtn');
+    const heroChatBtn = document.getElementById('heroChatBtn');
+    const contactChatBtn = document.getElementById('contactChatBtn');
 
-    // 對話歷史紀錄 (保存給 OpenRouter 作為上下文)
+    // 保存對話紀錄（包含 assistant 的 reasoning_details 以便模型延續推理）
     let chatHistory = [];
 
-    // 開啟/關閉對話視窗
-    chatLauncher.addEventListener('click', () => {
-      chatWindow.classList.toggle('active');
-      if (chatWindow.classList.contains('active')) {
+    function getSavedGasUrl() {
+      return (localStorage.getItem(STORAGE_KEY_GAS_URL) || '').trim();
+    }
+
+    function updateConnectionUI() {
+      const url = getSavedGasUrl();
+      if (url) {
+        connectionPill.classList.add('ready');
+        connectionText.textContent = '已設定 GAS 連線';
+        launcherDot.classList.add('connected');
+      } else {
+        connectionPill.classList.remove('ready');
+        connectionText.textContent = '尚未設定 GAS 網址';
+        launcherDot.classList.remove('connected');
+      }
+    }
+
+    function openChat(openSettingsDirectly = false) {
+      chatWindow.classList.add('active');
+      chatWindow.setAttribute('aria-hidden', 'false');
+      if (openSettingsDirectly) {
+        toggleSettings(true);
+      } else if (!settingsPanel.classList.contains('open')) {
         chatInput.focus();
       }
-    });
+    }
 
-    chatCloseBtn.addEventListener('click', () => {
+    function closeChat() {
       chatWindow.classList.remove('active');
-    });
+      chatWindow.setAttribute('aria-hidden', 'true');
+    }
 
-    // 快捷問題點擊事件
-    document.addEventListener('click', (e) => {
-      if (e.target && e.target.classList.contains('chip-btn')) {
-        const query = e.target.getAttribute('data-query');
-        if (query) {
-          sendMessage(query);
-        }
+    function toggleSettings(forceState) {
+      const shouldOpen = typeof forceState === 'boolean'
+        ? forceState
+        : !settingsPanel.classList.contains('open');
+
+      if (shouldOpen) {
+        gasUrlInput.value = getSavedGasUrl();
+        hideFeedback();
+        settingsPanel.classList.add('open');
+        chatSettingsBtn.classList.add('active-tab');
+        gasUrlInput.focus();
+      } else {
+        settingsPanel.classList.remove('open');
+        chatSettingsBtn.classList.remove('active-tab');
+      }
+    }
+
+    function showFeedback(type, message) {
+      settingsFeedback.className = `settings-feedback show ${type}`;
+      settingsFeedback.textContent = message;
+    }
+
+    function hideFeedback() {
+      settingsFeedback.className = 'settings-feedback';
+      settingsFeedback.textContent = '';
+    }
+
+    function isValidGasUrl(url) {
+      try {
+        const parsed = new URL(url);
+        return parsed.protocol === 'https:' && parsed.hostname.includes('script.google.com');
+      } catch {
+        return false;
+      }
+    }
+
+    function renderWelcomeMessage() {
+      const hasUrl = Boolean(getSavedGasUrl());
+      const configPrompt = hasUrl
+        ? ''
+        : `<br><button type="button" class="inline-config-btn" id="inlineOpenSettings">⚙️ 尚未設定 GAS 網址，點此填入</button>`;
+
+      chatBody.innerHTML = `
+        <div class="chat-msg bot">
+          <div class="msg-avatar"><svg><use href="#robot-mascot" /></svg></div>
+          <div class="chat-bubble">
+            👋 你好！我是<strong>黃種州的 AI 小客服機器人</strong>。<br>
+            你可以問我關於種州的室內設計作品、研究方向或 AI 應用工具喔！${configPrompt}
+            <div class="quick-chips">
+              <button type="button" class="chip-btn" data-query="請問黃種州目前的學歷與研究主軸是什麼？">🎓 學歷與研究</button>
+              <button type="button" class="chip-btn" data-query="種州有哪些代表性的室內設計或 AI 專案？">📐 精選專案</button>
+              <button type="button" class="chip-btn" data-query="如何與種州聯繫或合作？">📫 聯絡方式</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Event bindings
+    chatLauncher.addEventListener('click', () => {
+      if (chatWindow.classList.contains('active')) {
+        closeChat();
+      } else {
+        openChat(false);
       }
     });
 
-    // 表單提交事件
+    chatLauncher.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        chatLauncher.click();
+      }
+    });
+
+    [headerChatBtn, heroChatBtn, contactChatBtn].forEach((btn) => {
+      if (btn) btn.addEventListener('click', () => openChat(false));
+    });
+
+    chatCloseBtn.addEventListener('click', closeChat);
+    chatSettingsBtn.addEventListener('click', () => toggleSettings());
+
+    chatClearBtn.addEventListener('click', () => {
+      chatHistory = [];
+      renderWelcomeMessage();
+    });
+
+    saveGasBtn.addEventListener('click', () => {
+      const val = gasUrlInput.value.trim();
+      if (!val) {
+        showFeedback('err', '請先輸入 Google Apps Script 網頁應用程式網址。');
+        return;
+      }
+      if (!isValidGasUrl(val)) {
+        showFeedback('warn', '網址格式看起來不太像 GAS 網址（通常為 https://script.google.com/macros/s/.../exec），請再次確認。');
+        return;
+      }
+      localStorage.setItem(STORAGE_KEY_GAS_URL, val);
+      updateConnectionUI();
+      showFeedback('ok', '✅ 已儲存 GAS 網址！現在可以直接開始與小客服對話囉。');
+      setTimeout(() => {
+        toggleSettings(false);
+        renderWelcomeMessage();
+      }, 700);
+    });
+
+    resetGasBtn.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY_GAS_URL);
+      gasUrlInput.value = '';
+      updateConnectionUI();
+      showFeedback('warn', '已清除儲存的 GAS 網址。');
+      renderWelcomeMessage();
+    });
+
+    testGasBtn.addEventListener('click', async () => {
+      const val = gasUrlInput.value.trim();
+      if (!val) {
+        showFeedback('err', '請先貼上 GAS 網址再進行測試。');
+        return;
+      }
+      testGasBtn.disabled = true;
+      testGasBtn.textContent = '測試中...';
+      showFeedback('warn', '正在連線至 Google Apps Script...');
+
+      try {
+        const res = await fetch(val, { method: 'GET', redirect: 'follow' });
+        const data = await res.json();
+        if (data && data.status === 'ok') {
+          if (data.hasApiKey) {
+            showFeedback('ok', `✅ 連線成功！模型：${data.model || 'claude-haiku-5.5'}，已讀取指令碼屬性 API Key。請記得點擊「儲存設定」。`);
+          } else {
+            showFeedback('warn', '⚠️ GAS 已連線，但尚未在 GAS「指令碼屬性」偵測到 OPENROUTER_API_KEY。');
+          }
+        } else {
+          showFeedback('err', '連線成功但回傳格式不符預期，請確認部署的是正確的 GAS 程式碼。');
+        }
+      } catch (err) {
+        showFeedback('err', `❌ 無法連線（${err.message}）。請確認 GAS 已部署為「網頁應用程式」且存取權限為「任何人 (Anyone)」。`);
+      } finally {
+        testGasBtn.disabled = false;
+        testGasBtn.textContent = '🔌 測試連線';
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'inlineOpenSettings') {
+        openChat(true);
+      }
+      if (e.target && e.target.classList.contains('chip-btn')) {
+        const query = e.target.getAttribute('data-query');
+        if (query) sendMessage(query);
+      }
+    });
+
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const text = chatInput.value.trim();
@@ -1139,31 +1727,25 @@
       sendMessage(text);
     });
 
-    // 發送訊息核心邏輯
     async function sendMessage(text) {
-      // 1. 渲染使用者訊息氣泡
       appendMessage('user', text);
 
-      // 2. 顯示小機器人「輸入中 / 思考中」動畫
-      const typingEl = appendTypingIndicator();
-      chatBody.scrollTop = chatBody.scrollHeight;
-
-      // 3. 檢查 GAS URL 是否尚未填寫
-      if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL === "YOUR_GAS_WEB_APP_URL_HERE") {
-        removeTypingIndicator(typingEl);
-        appendMessage('bot', `⚠️ **設定提示**：\n目前後端 Google Apps Script 網址尚未設定！\n請先依照部署教學將 GAS Web App URL 填入 \`index.html\` 中的 \`GAS_WEB_APP_URL\` 變數，小機器人就能正式連線回覆囉！`);
+      const gasUrl = getSavedGasUrl();
+      if (!gasUrl) {
+        appendMessage('bot', '⚠️ 尚未設定 Google Apps Script 網址！請點擊右上角的「⚙️ 設定」按鈕貼上您的 GAS Web App URL。', true);
         return;
       }
 
-      // 4. 呼叫 Google Apps Script 後端
-      try {
-        chatSendBtn.disabled = true;
+      const typingEl = appendTypingIndicator();
+      chatSendBtn.disabled = true;
 
-        // 使用 text/plain 避免觸發瀏覽器 CORS OPTIONS 預檢問題（GAS 不支援 OPTIONS 預檢請求）
-        const response = await fetch(GAS_WEB_APP_URL, {
-          method: "POST",
+      try {
+        // 使用 text/plain 避免觸發瀏覽器 CORS OPTIONS 預檢（GAS 不支援 OPTIONS）
+        const response = await fetch(gasUrl, {
+          method: 'POST',
+          redirect: 'follow',
           headers: {
-            "Content-Type": "text/plain;charset=utf-8"
+            'Content-Type': 'text/plain;charset=utf-8'
           },
           body: JSON.stringify({
             message: text,
@@ -1172,93 +1754,88 @@
         });
 
         const data = await response.json();
-        removeTypingIndicator(typingEl);
+        removeEl(typingEl);
 
         if (data.reply) {
           appendMessage('bot', data.reply);
-          // 將當前輪對話紀錄存入歷史
           chatHistory.push({ role: 'user', content: text });
-          chatHistory.push({ role: 'assistant', content: data.reply });
-        } else if (data.error) {
-          appendMessage('bot', `❌ 錯誤：${data.error}`);
-        } else {
-          appendMessage('bot', '抱歉，暫時無法取得回覆，請稍後再試。');
-        }
 
+          // 保留 reasoning_details 未修改傳回下一輪
+          const assistantEntry = { role: 'assistant', content: data.reply };
+          if (data.reasoning_details !== undefined && data.reasoning_details !== null) {
+            assistantEntry.reasoning_details = data.reasoning_details;
+          }
+          chatHistory.push(assistantEntry);
+        } else if (data.error) {
+          appendMessage('bot', `❌ 後端回報錯誤：\n${data.error}`);
+        } else {
+          appendMessage('bot', '抱歉，小客服暫時沒有收到有效回覆，請稍後再試。');
+        }
       } catch (err) {
-        removeTypingIndicator(typingEl);
-        appendMessage('bot', `❌ 連線發生錯誤：${err.message}\n請確認 GAS Web App 是否已設定為「任何人 (Anyone)」皆可存取。`);
+        removeEl(typingEl);
+        appendMessage('bot', `❌ 連線失敗：${err.message}\n請點右上角「⚙️ 設定」確認 GAS 網址正確且權限已設為「任何人 (Anyone)」。`, true);
       } finally {
         chatSendBtn.disabled = false;
         chatBody.scrollTop = chatBody.scrollHeight;
       }
     }
 
-    // 新增訊息到對話框
-    function appendMessage(sender, content) {
+    function appendMessage(sender, content, withSettingsBtn = false) {
       const msgDiv = document.createElement('div');
       msgDiv.className = `chat-msg ${sender}`;
 
       if (sender === 'bot') {
+        const extraBtn = withSettingsBtn
+          ? `<br><button type="button" class="inline-config-btn" id="inlineOpenSettings">⚙️ 立即開啟設定</button>`
+          : '';
         msgDiv.innerHTML = `
-          <div class="chat-msg-avatar">
-            <svg><use href="#icon-robot"/></svg>
-          </div>
-          <div class="chat-bubble">${formatText(content)}</div>
+          <div class="msg-avatar"><svg><use href="#robot-mascot" /></svg></div>
+          <div class="chat-bubble">${formatText(content)}${extraBtn}</div>
         `;
       } else {
-        msgDiv.innerHTML = `
-          <div class="chat-bubble">${escapeHtml(content)}</div>
-        `;
+        msgDiv.innerHTML = `<div class="chat-bubble">${escapeHtml(content)}</div>`;
       }
 
       chatBody.appendChild(msgDiv);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
 
-    // 顯示「輸入中」指示器
     function appendTypingIndicator() {
       const typingDiv = document.createElement('div');
-      typingDiv.className = 'chat-msg bot typing-wrapper';
+      typingDiv.className = 'chat-msg bot';
       typingDiv.innerHTML = `
-        <div class="chat-msg-avatar">
-          <svg><use href="#icon-robot"/></svg>
-        </div>
-        <div class="chat-bubble typing-indicator">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+        <div class="msg-avatar"><svg><use href="#robot-mascot" /></svg></div>
+        <div class="chat-bubble">
+          <div class="typing-dots"><span></span><span></span><span></span></div>
         </div>
       `;
       chatBody.appendChild(typingDiv);
+      chatBody.scrollTop = chatBody.scrollHeight;
       return typingDiv;
     }
 
-    // 移除「輸入中」指示器
-    function removeTypingIndicator(el) {
-      if (el && el.parentNode) {
-        el.parentNode.removeChild(el);
-      }
+    function removeEl(el) {
+      if (el && el.parentNode) el.parentNode.removeChild(el);
     }
 
-    // 轉義 HTML 防止 XSS
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
-    // 簡易格式化 (支援換行與粗體)
     function formatText(text) {
-      const safe = escapeHtml(text);
-      return safe
+      return escapeHtml(text)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\n/g, '<br>');
     }
-  </script>
 
+    // 初始化介面
+    updateConnectionUI();
+    renderWelcomeMessage();
+  </script>
 </body>
 </html>
